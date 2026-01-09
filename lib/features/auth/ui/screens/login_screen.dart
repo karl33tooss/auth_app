@@ -5,6 +5,7 @@ import '../../../../core/constants/app_colors.dart';
 import '../widgets/custom_text_field.dart';
 import '../widgets/gradient_button.dart';
 import '../widgets/social_login_button.dart';
+import '../../../../core/utils/app_validators.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -15,6 +16,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _rememberMe = false; // Стан чекбокса
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +40,8 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
+                child: Form(
+                  key: _formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -70,6 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     const CustomTextField(
                       hintText: "pearl@harbour.com",
                       prefixIcon: Icons.email_outlined,
+                      validator: AppValidators.validateEmail,
                     ),
 
                     const Gap(20),
@@ -87,6 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       hintText: "••••••••",
                       prefixIcon: Icons.lock_outline,
                       isPassword: true,
+                      validator: AppValidators.validatePassword,
                     ),
 
                     const Gap(10),
@@ -135,7 +141,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     GradientButton(
                       text: "Sign in",
                       onPressed: () {
-                        print("Login clicked");
+                          if (_formKey.currentState!.validate()) {
+                            print("Login Validated!");
+                          }
                       },
                     ),
 
@@ -198,6 +206,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                     const Gap(20), // Відступ знизу
                   ],
+                ),
                 ),
               ),
             ),

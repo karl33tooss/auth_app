@@ -5,6 +5,7 @@ import '../../../../core/constants/app_colors.dart';
 import '../widgets/custom_text_field.dart';
 import '../widgets/gradient_button.dart';
 import '../widgets/social_login_button.dart';
+import '../../../../core/utils/app_validators.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -14,7 +15,8 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  bool _rememberMe = false; 
+  bool _rememberMe = false;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +40,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [Text(
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
                         "Create account",
                         style: TextStyle(
                           fontSize: 22,
@@ -48,7 +53,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           color: AppColors.textMain,
                         ),
                       ),
-                    Text(
+                      Text(
                         "Please enter your details",
                         style: TextStyle(
                           fontSize: 14,
@@ -56,161 +61,169 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           color: AppColors.textSecondary,
                         ),
                       ),
-                    const Gap(25),
+                      const Gap(25),
 
-                    // --- 1. Username Field ---
-                    const Text(
-                      "Username",
-                      style: TextStyle(
-                        color: AppColors.textMain,
-                        fontWeight: FontWeight.w500,
+                      // --- 1. Username Field ---
+                      const Text(
+                        "Username",
+                        style: TextStyle(
+                          color: AppColors.textMain,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                    ),
-                    const Gap(8),
-                    const CustomTextField(
-                      hintText: "pearl@harbour.com",
-                      prefixIcon: Icons.person_outline,
-                    ),
-                    
-                    const Gap(16),
-
-                    const Text(
-                      "Email",
-                      style: TextStyle(
-                        color: AppColors.textMain,
-                        fontWeight: FontWeight.w500,
+                      const Gap(8),
+                      const CustomTextField(
+                        hintText: "pearl@harbour.com",
+                        prefixIcon: Icons.person_outline,
+                        validator: AppValidators.validateUsername,
                       ),
-                    ),
-                    const Gap(8),
-                    const CustomTextField(
-                      hintText: "pearl@harbour.com",
-                      prefixIcon: Icons.email_outlined,
-                    ),
 
-                    const Gap(16),
+                      const Gap(16),
 
-                    const Text(
-                      "Phone number",
-                      style: TextStyle(
-                        color: AppColors.textMain,
-                        fontWeight: FontWeight.w500,
+                      const Text(
+                        "Email",
+                        style: TextStyle(
+                          color: AppColors.textMain,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                    ),
-                    const Gap(8),
-                    const CustomTextField(
-                      hintText: "pearl@harbour.com",
-                      prefixIcon: Icons.phone_android_outlined, 
-                      keyboardType: TextInputType.phone,
-                    ),
-
-                    const Gap(16),
-
-                    const Text(
-                      "Password",
-                      style: TextStyle(
-                        color: AppColors.textMain,
-                        fontWeight: FontWeight.w500,
+                      const Gap(8),
+                      const CustomTextField(
+                        hintText: "pearl@harbour.com",
+                        prefixIcon: Icons.email_outlined,
+                        validator: AppValidators.validateEmail,
                       ),
-                    ),
-                    const Gap(8),
-                    const CustomTextField(
-                      hintText: "••••••••",
-                      prefixIcon: Icons.lock_outline,
-                      isPassword: true,
-                    ),
 
-                    const Gap(10),
+                      const Gap(16),
 
-                    Row(
-                      children: [
-                        SizedBox(
-                          height: 24,
-                          width: 24,
-                          child: Checkbox(
-                            value: _rememberMe,
-                            activeColor: AppColors.primaryBlue,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(4),
+                      const Text(
+                        "Phone number",
+                        style: TextStyle(
+                          color: AppColors.textMain,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      const Gap(8),
+                      const CustomTextField(
+                        hintText: "pearl@harbour.com",
+                        prefixIcon: Icons.phone_android_outlined,
+                        keyboardType: TextInputType.phone,
+                        validator: AppValidators.validatePhone,
+                      ),
+
+                      const Gap(16),
+
+                      const Text(
+                        "Password",
+                        style: TextStyle(
+                          color: AppColors.textMain,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      const Gap(8),
+                      const CustomTextField(
+                        hintText: "••••••••",
+                        prefixIcon: Icons.lock_outline,
+                        isPassword: true,
+                        validator: AppValidators.validatePassword,
+                      ),
+
+                      const Gap(10),
+
+                      Row(
+                        children: [
+                          SizedBox(
+                            height: 24,
+                            width: 24,
+                            child: Checkbox(
+                              value: _rememberMe,
+                              activeColor: AppColors.primaryBlue,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              onChanged: (val) {
+                                setState(() {
+                                  _rememberMe = val ?? false;
+                                });
+                              },
                             ),
-                            onChanged: (val) {
-                              setState(() {
-                                _rememberMe = val ?? false;
-                              });
-                            },
                           ),
-                        ),
-                        const Gap(8),
-                        const Text(
-                          "Remember me",
-                          style: TextStyle(color: AppColors.textSecondary),
-                        ),
-                      ],
-                    ),
+                          const Gap(8),
+                          const Text(
+                            "Remember me",
+                            style: TextStyle(color: AppColors.textSecondary),
+                          ),
+                        ],
+                      ),
 
-                    const Gap(20),
+                      const Gap(20),
 
-                    GradientButton(
-                      text: "Create account",
-                      onPressed: () {
-                        print("Create account clicked");
-                      },
-                    ),
+                      GradientButton(
+                        text: "Create account",
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            print("Sign Up Validated!");
+                          }
+                        },
+                      ),
 
-                    const Gap(20),
+                      const Gap(20),
 
-                    const Row(
-                      children: [
-                        Expanded(child: Divider(color: AppColors.borderGrey)),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 16),
-                          child: Text(
-                            "or",
+                      const Row(
+                        children: [
+                          Expanded(child: Divider(color: AppColors.borderGrey)),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 16),
+                            child: Text(
+                              "or",
+                              style: TextStyle(
+                                color: AppColors.textMain,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                          Expanded(child: Divider(color: AppColors.borderGrey)),
+                        ],
+                      ),
+
+                      const Gap(20),
+
+                      SocialLoginButton(
+                        onPressed: () {
+                          print("Google sign up");
+                        },
+                      ),
+
+                      const Gap(30),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            "Already have an account? ",
                             style: TextStyle(
                               color: AppColors.textMain,
-                              fontWeight: FontWeight.w600),
-                          ),
-                        ),
-                        Expanded(child: Divider(color: AppColors.borderGrey)),
-                      ],
-                    ),
-
-                    const Gap(20),
-
-                    SocialLoginButton(
-                      onPressed: () {
-                        print("Google sign up");
-                      },
-                    ),
-
-                    const Gap(30), 
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          "Already have an account? ",
-                          style: TextStyle(
-                            color: AppColors.textMain,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            context.go('/login');
-                          },
-                          child: const Text(
-                            "Sign in",
-                            style: TextStyle(
-                              color: AppColors.primaryBlue,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
+                          GestureDetector(
+                            onTap: () {
+                              context.go('/login');
+                            },
+                            child: const Text(
+                              "Sign in",
+                              style: TextStyle(
+                                color: AppColors.primaryBlue,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
 
-                    const Gap(20), 
-                  ],
+                      const Gap(20),
+                    ],
+                  ),
                 ),
               ),
             ),

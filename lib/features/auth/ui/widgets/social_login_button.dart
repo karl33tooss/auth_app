@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../../../../core/constants/app_colors.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class SocialLoginButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -34,7 +35,11 @@ class SocialLoginButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.g_mobiledata, size: 32, color: Colors.black), 
+              SvgPicture.asset(
+                'assets/icons/google_logo.svg',
+                height: 24, // Акуратний розмір
+                width: 24,
+              ),
               const Gap(10),
               const Text(
                 "Continue with Google",
