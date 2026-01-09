@@ -68,8 +68,7 @@ class StartScreen extends StatelessWidget {
                   GradientButton(
                     text: "Let's Get Started",
                     onPressed: () {
-                       print("Перехід на логін...");
-                       // context.go('/login');
+                       context.go('/login');
                     },
                   ),
                 ],
