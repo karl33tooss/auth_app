@@ -17,7 +17,6 @@ class MyApp extends StatelessWidget {
       
       theme: AppTheme.lightTheme,
       
-      // 👇 Підключаємо конфігурацію роутера
       routerConfig: appRouter,
     );
   }
