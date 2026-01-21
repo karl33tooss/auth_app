@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import '../../../../core/constants/app_colors.dart';
+import '../../core/constants/app_colors.dart';
+import '../../core/constants/app_assets.dart';
+import '../../core/constants/app_text_styles.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class SocialLoginButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -34,16 +37,15 @@ class SocialLoginButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.g_mobiledata, size: 32, color: Colors.black), 
+              SvgPicture.asset(
+                AppAssets.googleLogo,
+                height: 24,
+                width: 24,
+              ),
               const Gap(10),
               const Text(
                 "Continue with Google",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.textMain,
-                  fontFamily: 'Inter',
-                ),
+                style: AppTextStyles.buttonSecondary,
               ),
             ],
           ),

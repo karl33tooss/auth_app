@@ -1,27 +1,17 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
+  static const Color scaffoldBackground = Color(0xFFF6F6F9);
 
-  static const Color scaffoldBackground = Color.fromARGB(255, 246, 246, 249); 
+  static const Color headerBlue = Color(0xFF005F8F);
+  static const Color primaryBlue = Color(0xFF00A7FB);
 
-  static const Color headerBlue = Color.fromARGB(255, 0, 95, 143);
-  static const Color primaryBlue = Color.fromARGB(255, 0, 167, 251);
-  
-  static const Color inputFieldBackground = Color.fromARGB(255, 255, 255, 255); 
-   static const Color fieldShadow = Color.fromRGBO(36, 36, 36, 0.05);
+  static const Color inputFieldBackground = Color(0xFFFFFFFF);
+  static const Color fieldShadow = Color(0x2424240D);
 
-  static const Color borderGrey = Color.fromARGB(255, 207, 207, 207);
-  
-  static const Color textMain = Color.fromARGB(255, 36, 36, 36);
-  static const Color textSecondary = Color.fromARGB(255, 115, 115, 115);
-  static const Color textWhite = Color.fromARGB(255, 255, 255, 255);
-  
-  static const LinearGradient primaryGradient = LinearGradient(
-    colors: [
-      Color.fromARGB(255, 35, 105, 246),
-      Color.fromARGB(255, 95, 159, 255),
-    ],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-  );
+  static const Color borderGrey = Color(0xFFE0E0E0);
+
+  static const Color textMain = Color(0xFF242424);
+  static const Color textSecondary = Color(0xFF737373);
+  static const Color textWhite = Color(0xFFFFFFFF);
 }

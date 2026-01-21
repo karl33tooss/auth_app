@@ -1,8 +1,9 @@
+import 'package:auth_app/core/constants/app_text_styles.dart';
+import 'package:auth_app/core/router/router.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import '../widgets/gradient_button.dart';
-import '../../../../core/constants/app_colors.dart';
+import '../../core/constants/app_colors.dart';
 
 class StartScreen extends StatelessWidget {
   const StartScreen({super.key});
@@ -10,11 +11,11 @@ class StartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Header
       backgroundColor: AppColors.primaryBlue, 
       body: Column(
         children: [
-
-          // --- ВЕРХНЯ ЧАСТИНА ---
+          // Top part
           Expanded(
             flex: 1, 
             child: Center(
@@ -26,7 +27,7 @@ class StartScreen extends StatelessWidget {
             ),
           ),
 
-          // --- НИЖНЯ ЧАСТИНА ---
+          // Bottom part
           Expanded(
             flex: 4,
             child: Container(
@@ -44,31 +45,24 @@ class StartScreen extends StatelessWidget {
                 children: [
                   const Text(
                     "Welcome to Auth App",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.textMain, 
-                    ),
+                    style: AppTextStyles.headlineLarge,
                     textAlign: TextAlign.center,
                   ),
                   
-                  const Gap(12),
+                  const SizedBox(height: 12),
                   
                   const Text(
                     "The best way to manage your tasks and workflow.",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: AppColors.textSecondary,
-                    ),
+                    style: AppTextStyles.headlineMedium,
                     textAlign: TextAlign.center,
                   ),
 
-                  const Gap(40),
+                  const SizedBox(height: 40),
 
                   GradientButton(
                     text: "Let's Get Started",
                     onPressed: () {
-                       context.go('/login');
+                       context.go(AppRoutes.login);
                     },
                   ),
                 ],

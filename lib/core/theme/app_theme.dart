@@ -6,19 +6,15 @@ class AppTheme {
   static ThemeData get lightTheme {
     return ThemeData(
       brightness: Brightness.light,
-      
       scaffoldBackgroundColor: AppColors.scaffoldBackground,
-      
       textTheme: GoogleFonts.interTextTheme(
         ThemeData.light().textTheme,
       ),
-      
       colorScheme: const ColorScheme.light(
         primary: AppColors.primaryBlue,
         surface: Colors.white,
         onSurface: AppColors.textMain, 
       ),
-      
       useMaterial3: true,
     );
   }
